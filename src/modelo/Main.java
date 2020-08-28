@@ -3,14 +3,16 @@ package modelo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.opencsv.CSVReader;
 
 public class Main {
 
-	public static void main(String[] args) {
+	/**private static String[] getArray() {
 		BufferedReader bufferLectura = null;
+		String[] campos = null;
 		try {
 			// Abrir el .csv en buffer de lectura
 			bufferLectura = new BufferedReader(new FileReader(
@@ -19,7 +21,7 @@ public class Main {
 			String linea = bufferLectura.readLine();
 			while (linea != null) {
 				// Sepapar la linea leída con el separador definido previamente
-				String[] campos = linea.split(",");
+				campos = linea.split(",");
 				for (int i = 0; i < campos.length; i++) {
 					System.out.println(campos[i]);
 				}
@@ -38,6 +40,37 @@ public class Main {
 				}
 			}
 		}
+		return campos;
+	}
+	**/
+	private static String[] getArray() {
+        BufferedReader bufferLectura = null;
+        String[]campos=new String[10000];
+        try {
+            bufferLectura = new BufferedReader(new FileReader("C:\\Users\\Sara Castaño\\Documents\\GitHub\\SistemaArchivos\\src\\recursos\\data.csv"));
+            String linea = bufferLectura.readLine();
+            int i = 0;
+            while (linea != null) {
+                campos[i] = linea;
+                i=i+1;
+                linea = bufferLectura.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bufferLectura != null) {
+                try {
+                    bufferLectura.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return campos;
+    }
+	
+	public static void main(String[] args) {
+		System.out.println(getArray());
 	}
 
 }
