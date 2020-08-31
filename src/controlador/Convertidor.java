@@ -1,7 +1,12 @@
 package controlador;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Convertidor {
 
@@ -9,30 +14,29 @@ public class Convertidor {
 	 * Clase encargada del manejo del pool de hilos, y de dividir los bloques de registros
 	 */
 	
-	  /** private static final int tamano_bloque = 10000;
+	 private static final int tamano_bloque = 10000;
 
 	    private ExecutorService pool;
-	    public Registros() {
+	    
+	    public Convertidor() {
 	        pool = Executors.newFixedThreadPool(50);
 	    }
 
-	    public void dividirRegistro(double nums[]){
+	    public Double dividirRegistro(String lista[]){
 
-	        int chunks = (int) Math.floor(nums.length /tamano_bloque);
+	        int chunks = (int) Math.floor(lista.length /tamano_bloque);
 
-	        double sum = 0;
-
-	        List<Future<Double>> summers = new ArrayList<>();
+	        List<Future<Double>> listaConfirmacion = new ArrayList<>();
 
 	        for(int c = 0; c<chunks; c++){
-	            SumArray summer = new SumArray(Arrays.copyOfRange(nums,c*tamano_bloque, (c + 1)*tamano_bloque ));
-	            Future<Double> futuro = pool.submit(summer);
-	            summers.add(futuro);
+	           Lector lector = new Lector(Arrays.copyOfRange(lista,c*tamano_bloque, (c + 1)*tamano_bloque ));
+	           Future<Double> futuro = pool.submit(lector);
+	            listaConfirmacion.add(futuro);
 	        }
 
-	        for(Future<Double> futuro: summers){
+	        for(Future<Double> futuro: listaConfirmacion){
 	            try {
-	                sum +=futuro.get();
+	                futuro.get();
 	            } catch (InterruptedException e) {
 	                e.printStackTrace();
 	            } catch (ExecutionException e) {
@@ -40,8 +44,7 @@ public class Convertidor {
 	            }
 	        }
 
-	        return sum;
+	        return 0.0;
 	    }
-	    **/
-	
+	   
 }
