@@ -1,9 +1,9 @@
-package modelo;
+package controlador;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Registros {
+public class Convertidor {
 
 	/**
 	 * Clase encargada del manejo del pool de hilos, y de dividir los bloques de registros

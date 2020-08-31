@@ -1,13 +1,13 @@
-package modelo;
+package controlador;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.opencsv.CSVReader;
-
 public class Main {
 
 	/**private static String[] getArray() {
@@ -43,7 +43,7 @@ public class Main {
 		return campos;
 	}
 	**/
-	private static String[] getArray() {
+/**	private static String[] getArray() {
         BufferedReader bufferLectura = null;
         String[]campos=new String[10000];
         try {
@@ -68,9 +68,14 @@ public class Main {
         }
         return campos;
     }
+ * @throws SQLException 
 	
-	public static void main(String[] args) {
-		System.out.println(getArray());
+	**/
+	public static void main(String[] args){
+		Conexion conexion = new Conexion();
+  String query = "INSERT INTO categoria (nombrecategoria) VALUES ('categoria2')";
+  		conexion.ejecutar(query);
+		           
 	}
 
 }
