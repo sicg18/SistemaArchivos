@@ -8,21 +8,22 @@ public class Lector implements Callable<Double> {
 	 * Clase que hará la función de sumArray
 	 */
 
-	private double result;
-	private double[] numbers;
+	private String[] registros;
 
 	public Lector() {
 	}
 
-	public Lector(String[] lista) {
+	public Lector(String[] registros) {
+		this.registros = registros;
 
 	}
 
-	private double sum(double array[]) {
-		double sum = 0;
+	private double leerArchivos(String lista[]) {
 
-		for (double num : array) {
-			sum += num;
+		for (String registro : lista) {
+			RegistroPostgres rp = new RegistroPostgres();
+			String[] campos = registro.split(",");
+			rp.insertarProducto("", "", 0); //Para probar más tarde :).
 		}
 
 		try {
@@ -31,17 +32,12 @@ public class Lector implements Callable<Double> {
 			e.printStackTrace();
 		}
 
-		return sum;
+		return 0.0;
 	}
 
 	@Override
 	public Double call() throws Exception {
-		System.out.println("sumando....");
-		return sum(numbers);
-	}
-
-	public double getResult() {
-		return result;
+		return leerArchivos(registros);
 	}
 
 }
