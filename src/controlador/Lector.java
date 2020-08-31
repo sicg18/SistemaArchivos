@@ -19,19 +19,15 @@ public class Lector implements Callable<Double> {
 	}
 
 	private double leerArchivos(String lista[]) {
-
-		for (String registro : lista) {
-			RegistroPostgres rp = new RegistroPostgres();
-			String[] campos = registro.split(",");
-			rp.insertarProducto("", "", 0); //Para probar más tarde :).
-		}
-
 		try {
-			Thread.sleep((long) (Math.random() * 1000));
-		} catch (InterruptedException e) {
+			for (String registro : lista) {
+				RegistroPostgres rp = new RegistroPostgres();
+				String[] campos = registro.split(",");
+				rp.insertarProducto("", "", 0); // Para probar más tarde :).
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return 0.0;
 	}
 
