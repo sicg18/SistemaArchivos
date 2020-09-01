@@ -2,7 +2,7 @@ package controlador;
 
 import java.util.concurrent.Callable;
 
-public class Lector implements Callable<Double> {
+public class Tramitador implements Callable<Double> {
 
 	/*
 	 * Clase que hará la función de sumArray
@@ -10,10 +10,10 @@ public class Lector implements Callable<Double> {
 
 	private String[] registros;
 
-	public Lector() {
+	public Tramitador() {
 	}
 
-	public Lector(String[] registros) {
+	public Tramitador(String[] registros) {
 		this.registros = registros;
 	}
 

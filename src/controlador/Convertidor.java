@@ -15,19 +15,35 @@ public class Convertidor {
 	 * registros
 	 */
 
-	private static final int tamano_bloque = 10000;
+	private int tamano_bloque = 1;
 
 	private ExecutorService pool;
 
-	public Convertidor() {
-		pool = Executors.newFixedThreadPool(50);
+	private int residuo = 0;
+
+	private String[] lista;
+
+	public Convertidor(int tamano_bloque, int hilos, String[] lista) {
+		residuo = (int) Math.floor(lista.length % tamano_bloque);
+		if (residuo != 0) {
+			pool = Executors.newFixedThreadPool(hilos + 1);
+		} else {
+			pool = Executors.newFixedThreadPool(hilos);
+		}
+		this.tamano_bloque = tamano_bloque;
+		this.lista = lista;
 	}
 
-	public Double dividirRegistro(String lista[]) {
+	public Double dividirRegistro() {
 		int chunks = (int) Math.floor(lista.length / tamano_bloque);
 		List<Future<Double>> listaConfirmacion = new ArrayList<>();
-		for (int c = 0; c < chunks; c++) {
-			Lector lector = new Lector(Arrays.copyOfRange(lista, c * tamano_bloque, (c + 1) * tamano_bloque));
+		for (int c = 0; c <= chunks; c++) {
+			Tramitador lector = null;
+			if (c == chunks) {
+				lector = new Tramitador(Arrays.copyOfRange(lista, (c) * tamano_bloque, ((c) * tamano_bloque) + residuo));
+			} else {
+				lector = new Tramitador(Arrays.copyOfRange(lista, c * tamano_bloque, (c + 1) * tamano_bloque));
+			}
 			Future<Double> futuro = pool.submit(lector);
 			listaConfirmacion.add(futuro);
 		}

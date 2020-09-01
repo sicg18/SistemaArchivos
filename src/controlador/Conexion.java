@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class Conexion {
 
 	protected String driver = "org.postgresql.Driver"; // nombre del driver
-	protected String connectString = "jdbc:postgresql://localhost:5432/ventas"; // ubicacion de la base de datos, para
+	protected String connectString = "jdbc:postgresql://localhost:5432/venta"; // ubicacion de la base de datos, para
 																				// postgres esta es por defecto
 	protected String user = "postgres"; // usuario de la base de datos
 	protected String password = "1234"; // password de la base de datos
@@ -56,9 +56,10 @@ public class Conexion {
 		try {
 			conectar();
 			resultadoDB = sentenciaSQL.executeQuery(sentencia);
-			desconectar();
+		//	desconectar();
 		} catch (Exception e) {
 			e.printStackTrace();
+			desconectar();
 		}
 	}
 }

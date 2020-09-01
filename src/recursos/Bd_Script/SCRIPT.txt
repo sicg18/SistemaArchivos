@@ -1,24 +1,19 @@
-DROP TABLE IF EXISTS categoria;
-DROP TABLE IF EXISTS tienda;
-DROP TABLE IF EXISTS producto;
-DROP TABLE IF EXISTS producto_tienda;
-
 -- -----------------------------------------------------
--- Base de datos ventas
+-- Crear base de datos
 -- -----------------------------------------------------
 
-CREATE DATABASE ventas
+create database venta;
 
 -- -----------------------------------------------------
 -- Table categoria
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS categoria (
-  idcategoria int NOT NULL,
+  idcategoria INT NOT NULL GENERATED ALWAYS AS IDENTITY,
   nombrecategoria VARCHAR(100) NOT NULL,
   PRIMARY KEY (idcategoria));
 
-
+CREATE UNIQUE INDEX CONCURRENTLY nombre_categoria_unique ON categoria(nombrecategoria );
 -- -----------------------------------------------------
 -- Table producto
 -- -----------------------------------------------------
@@ -30,7 +25,7 @@ CREATE TABLE IF NOT EXISTS producto (
     FOREIGN KEY (idcategoria)
     REFERENCES categoria (idcategoria)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE);
 
 -- -----------------------------------------------------
 -- Table tienda
@@ -39,7 +34,7 @@ CREATE TABLE IF NOT EXISTS producto (
 CREATE TABLE IF NOT EXISTS tienda (
   idtienda INT NOT NULL,
   nombretienda VARCHAR(100) NOT NULL,
-  PRIMARY KEY (idtienda))
+  PRIMARY KEY (idtienda));
 
 -- -----------------------------------------------------
 -- Table producto_tienda
@@ -56,5 +51,5 @@ CREATE TABLE IF NOT EXISTS producto_tienda (
     FOREIGN KEY (tienda_idtienda)
     REFERENCES tienda (idtienda)
     ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE);
 
