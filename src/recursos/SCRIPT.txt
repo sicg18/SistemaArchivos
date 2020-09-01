@@ -1,24 +1,13 @@
-DROP TABLE IF EXISTS categoria;
-DROP TABLE IF EXISTS tienda;
-DROP TABLE IF EXISTS producto;
-DROP TABLE IF EXISTS producto_tienda;
-
--- -----------------------------------------------------
--- Base de datos ventas
--- -----------------------------------------------------
-
-CREATE DATABASE ventas
-
 -- -----------------------------------------------------
 -- Table categoria
 -- -----------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS categoria (
-  idcategoria int NOT NULL,
+  idcategoria NOT NULL GENERATED ALWAYS AS IDENTITY,
   nombrecategoria VARCHAR(100) NOT NULL,
   PRIMARY KEY (idcategoria));
 
-
+CREATE UNIQUE INDEX CONCURRENTLY nombre_categoria_unique ON categoria(nombrecategoria );
 -- -----------------------------------------------------
 -- Table producto
 -- -----------------------------------------------------

@@ -15,7 +15,6 @@ public class Lector implements Callable<Double> {
 
 	public Lector(String[] registros) {
 		this.registros = registros;
-
 	}
 
 	private double leerArchivos(String lista[]) {
@@ -23,7 +22,10 @@ public class Lector implements Callable<Double> {
 			for (String registro : lista) {
 				RegistroPostgres rp = new RegistroPostgres();
 				String[] campos = registro.split(",");
-				rp.insertarProducto("", "", 0); // Para probar más tarde :).
+				int id = rp.insertarCategoria(campos[3]);
+				rp.insertarTienda(Integer.parseInt(campos[5]), campos[6]);
+				rp.insertarProducto(campos[0], campos[1], id); 
+				rp.insertarProductoTienda(campos[0], Integer.parseInt(campos[5]), Double.parseDouble(campos[2]));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
