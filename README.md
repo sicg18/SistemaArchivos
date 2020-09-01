@@ -19,5 +19,9 @@ Datita.csv -> 555
 
 - (tamano_bloque)(hilo) -> (100)(100)=10000
 
+#### Extra:
+
+- Consulta para listar todos los registros con sus características
+SELECT p.idproducto,p.nombreproducto,pt.precioproducto,c.nombrecategoria,t.idtienda,t.nombretienda from categoria c join producto p on c.idcategoria = p.idcategoria join producto_tienda pt on pt.producto_idproducto = p.idproducto join tienda t on t.idtienda = pt.tienda_idtienda;
 
 
