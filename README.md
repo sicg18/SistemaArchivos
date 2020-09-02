@@ -2,7 +2,7 @@
 
 ## Ejecución:
 
-- Ejecutar el script de la base de datos, este se encuentra en recrusos.Bd_Script.
+- Ejecutar el script de la base de datos, este se encuentra en recrusos.Bd_Script **IMPORTANTE: Crear siempre la clave unica de nombrecategoria para el correcto funcionamiento de la aplicación**.
 
 **Trabajado en Windows, en las rutas(Conexión y Main) // ó \\ adecuar según sistema operativo.**
 
