@@ -4,7 +4,7 @@
 
 - Ejecutar el script de la base de datos, este se encuentra en recrusos.Bd_Script **IMPORTANTE: Crear siempre la clave unica de nombrecategoria para el correcto funcionamiento de la aplicación**.
 
-**Trabajado en Windows, en las rutas(Conexión y Main) // ó \\ adecuar según sistema operativo.**
+- **Trabajado en Windows, en las rutas(Conexión y Main) // ó \\ adecuar según sistema operativo.**
 
 - Para ejecutar el programa, inicialmente se debe dar click en propiedades en Java Build Path dentro de librerías y en jdbcPostgresql editar y agregar la librería de postgresql, esta librería se encuentra en el package recursos.Libreria.
 Cambiar la información de la clase conexión en la variable connectString poner el nombre de la base de datos jdbc:postgresql://localhost:[Puerto]//[Nombre_BD], en la variable user, insertar el nombre del usuario al igual que la contraseña, insertar la contraseña del usuario. 
